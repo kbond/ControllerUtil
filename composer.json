@@ -1,7 +1,7 @@
 {
     "name": "zenstruck/controller-util",
     "type": "library",
-    "description": "Utilities for Symfony2 responses without dependencies.",
+    "description": "Utilities for creating Symfony2 responses without dependencies.",
     "keywords": ["symfony", "silex", "symfony2", "controller", "response"],
     "homepage": "https://github.com/kbond/controller-util",
     "license": "MIT",
