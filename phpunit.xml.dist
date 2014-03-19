@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="./vendor/autoload.php" colors="true">
+    <testsuites>
+        <testsuite name="ControllerUtil Test Suite">
+            <directory suffix="Test.php">./tests/Zenstruck/ControllerUtil/Tests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src/Zenstruck/ControllerUtil/</directory>
+        </whitelist>
+    </filter>
+</phpunit>

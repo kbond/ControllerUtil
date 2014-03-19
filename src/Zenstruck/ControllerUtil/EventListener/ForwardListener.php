@@ -11,13 +11,6 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
  */
 class ForwardListener
 {
-    private $httpKernel;
-
-    public function __construct(HttpKernelInterface $httpKernel)
-    {
-        $this->httpKernel = $httpKernel;
-    }
-
     public function onKernelView(GetResponseForControllerResultEvent $event)
     {
         $result = $event->getControllerResult();
@@ -29,7 +22,7 @@ class ForwardListener
         $parameters = $result->getParameters();
         $parameters['_controller'] = $result->getController();
         $subRequest = $event->getRequest()->duplicate(null, null, $parameters);
-        $response = $this->httpKernel->handle($subRequest, HttpKernelInterface::SUB_REQUEST);
+        $response = $event->getKernel()->handle($subRequest, HttpKernelInterface::SUB_REQUEST);
         $event->setResponse($response);
     }
 }
