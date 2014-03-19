@@ -11,3 +11,9 @@ env:
 
 before_install:
   - composer require --prefer-source symfony/http-kernel:${SYMFONY_VERSION}
+  
+script: phpunit -v --coverage-clover=coverage.clover
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
