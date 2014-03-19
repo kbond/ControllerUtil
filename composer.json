@@ -2,7 +2,7 @@
     "name": "zenstruck/controller-util",
     "type": "library",
     "description": "Utilities for creating Symfony2 responses without dependencies.",
-    "keywords": ["symfony", "silex", "symfony2", "controller", "response"],
+    "keywords": ["symfony", "silex", "symfony2", "controller", "response", "rest", "serializer"],
     "homepage": "https://github.com/kbond/controller-util",
     "license": "MIT",
     "authors": [
