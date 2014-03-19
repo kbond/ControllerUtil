@@ -33,7 +33,7 @@ class RedirectListenerTest extends BaseListenerTest
     {
         $urlGenerator = $this->getUrlGenerator();
         $listener = new RedirectListener($urlGenerator);
-        $event = $this->createEvent(array('foo' => 'bar'));
+        $event = $this->createEvent('foo');
         $listener->onKernelView($event);
 
         $this->assertNull($event->getResponse());
