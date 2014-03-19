@@ -1,0 +1,13 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+
+env:
+  - SYMFONY_VERSION=2.3.*
+  - SYMFONY_VERSION=2.4.*
+
+before_install:
+  - composer require --prefer-source symfony/http-kernel:${SYMFONY_VERSION}
