@@ -13,12 +13,13 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/http-kernel": "~2.3",
-        "symfony/routing": "~2.3",
-        "symfony/templating": "~2.3"
+        "symfony/http-kernel": "~2.3"
     },
-    "require-dev": {
-        "jms/serializer": "~0.15"
+    "suggests": {
+        "symfony/templating": "For using the TemplatingViewListener",
+        "symfony/routing": "For using the RedirectListener",
+        "twig/twig": "For using the TwigViewListener",
+        "jms/serializer": "For using the SerializerViewListener"
     },
     "autoload": {
         "psr-0": { "Zenstruck": "src/" }

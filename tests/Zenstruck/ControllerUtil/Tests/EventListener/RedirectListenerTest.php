@@ -42,8 +42,8 @@ class RedirectListenerTest extends BaseListenerTest
     private function getUrlGenerator()
     {
         return $this->getMock(
-            'Symfony\Component\Routing\Generator\UrlGenerator',
-            array(),
+            'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
+            array('generate'),
             array(),
             '',
             false

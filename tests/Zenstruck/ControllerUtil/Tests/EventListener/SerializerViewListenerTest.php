@@ -2,7 +2,6 @@
 
 namespace Zenstruck\ControllerUtil\Tests\EventListener;
 
-use JMS\Serializer\SerializerBuilder;
 use Zenstruck\ControllerUtil\EventListener\SerializerViewListener;
 use Zenstruck\ControllerUtil\View;
 
@@ -13,8 +12,17 @@ class SerializerViewListenerTest extends ViewListenerTest
 {
     public function testCreatesResponse()
     {
-        $listener = $this->createListener();
-        $event = $this->createEvent(new View('foo'), 'json');
+        $object = new View('foo');
+
+        $serializer = $this->createSerializer();
+        $serializer->expects($this->once())
+            ->method('serialize')
+            ->with($object->getData())
+            ->will($this->returnValue('"foo"'))
+        ;
+
+        $listener = new SerializerViewListener($serializer);
+        $event = $this->createEvent($object, 'json');
         $listener->onKernelView($event);
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $event->getResponse());
@@ -32,6 +40,11 @@ class SerializerViewListenerTest extends ViewListenerTest
 
     protected function createListener()
     {
-        return new SerializerViewListener(SerializerBuilder::create()->build());
+        return new SerializerViewListener($this->createSerializer());
+    }
+
+    private function createSerializer()
+    {
+        return $this->getMock('JMS\Serializer\SerializerInterface', array('serialize'));
     }
 }
