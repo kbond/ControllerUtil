@@ -15,7 +15,7 @@
         "php": ">=5.3.3",
         "symfony/http-kernel": "~2.3"
     },
-    "suggests": {
+    "suggest": {
         "symfony/templating": "For using the TemplatingViewListener",
         "symfony/routing": "For using the RedirectListener",
         "twig/twig": "For using the TwigViewListener",
