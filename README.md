@@ -6,3 +6,4 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/480f9e60-4ae0-46ea-b691-b66e51aa09f4/mini.png)](https://insight.sensiolabs.com/projects/480f9e60-4ae0-46ea-b691-b66e51aa09f4)
 [![Latest Stable Version](https://poser.pugx.org/zenstruck/controller-util/v/stable.png)](https://packagist.org/packages/zenstruck/controller-util)
 [![Latest Unstable Version](https://poser.pugx.org/zenstruck/controller-util/v/unstable.png)](https://packagist.org/packages/zenstruck/controller-util)
+[![License](https://poser.pugx.org/zenstruck/controller-util/license.png)](https://packagist.org/packages/zenstruck/controller-util)
