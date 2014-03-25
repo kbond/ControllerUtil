@@ -31,7 +31,13 @@ class View
      * @param array        $cache
      * @param array        $headers
      */
-    public function __construct($data, $statusCode = 200, $template = null, array $cache = array(), array $headers = array())
+    public function __construct(
+        $data,
+        $statusCode = 200,
+        $template = null,
+        array $cache = array(),
+        array $headers = array()
+    )
     {
         $this->data = $data;
         $this->statusCode = $statusCode;

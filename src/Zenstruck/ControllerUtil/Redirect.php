@@ -24,7 +24,7 @@ class Redirect
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getRoute()
     {

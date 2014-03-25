@@ -28,7 +28,13 @@ class Template extends View
      * @param array        $cache
      * @param array        $headers
      */
-    public function __construct($template, $parameters = array(), $statusCode = 200, array $cache = array(), array $headers = array())
+    public function __construct(
+        $template,
+        $parameters = array(),
+        $statusCode = 200,
+        array $cache = array(),
+        array $headers = array()
+    )
     {
         parent::__construct($parameters, $statusCode, $template, $cache, $headers);
     }
