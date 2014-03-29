@@ -7,6 +7,8 @@ namespace Zenstruck\ControllerUtil;
  */
 class Redirect
 {
+    const DEFAULT_STATUS_CODE = 302;
+
     private $route;
     private $parameters;
     private $statusCode;
@@ -16,7 +18,7 @@ class Redirect
      * @param array  $parameters
      * @param int    $statusCode
      */
-    public function __construct($route, array $parameters = array(), $statusCode = 302)
+    public function __construct($route, array $parameters = array(), $statusCode = self::DEFAULT_STATUS_CODE)
     {
         $this->route = $route;
         $this->parameters = $parameters;

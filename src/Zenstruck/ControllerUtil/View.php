@@ -7,6 +7,8 @@ namespace Zenstruck\ControllerUtil;
  */
 class View
 {
+    const DEFAULT_STATUS_CODE = 200;
+
     private $data;
     private $statusCode;
     private $template;
@@ -16,12 +18,13 @@ class View
     /**
      * @param mixed $data
      * @param int   $sharedMaxAge
+     * @param int   $statusCode
      *
      * @return static
      */
-    public static function createCached($data, $sharedMaxAge)
+    public static function createCached($data, $sharedMaxAge, $statusCode = self::DEFAULT_STATUS_CODE)
     {
-        return new static($data, 200, null, array('s_maxage' => $sharedMaxAge));
+        return new static($data, $statusCode, null, array('s_maxage' => $sharedMaxAge));
     }
 
     /**
@@ -33,7 +36,7 @@ class View
      */
     public function __construct(
         $data,
-        $statusCode = 200,
+        $statusCode = self::DEFAULT_STATUS_CODE,
         $template = null,
         array $cache = array(),
         array $headers = array()
