@@ -18,7 +18,7 @@ class FlashRedirect extends Redirect implements HasFlashes
      *
      * @return static
      */
-    public static function create($route, array $parameters, $message, $type = 'info', $statusCode = self::DEFAULT_STATUS_CODE)
+    public static function create($route, array $parameters, $message, $type = self::DEFAULT_FLASH_KEY, $statusCode = self::DEFAULT_STATUS_CODE)
     {
         return new static($route, $parameters, array($type => array($message)), $statusCode);
     }
@@ -31,7 +31,7 @@ class FlashRedirect extends Redirect implements HasFlashes
      *
      * @return static
      */
-    public static function createSimple($route, $message, $type = 'info', $statusCode = self::DEFAULT_STATUS_CODE)
+    public static function createSimple($route, $message, $type = self::DEFAULT_FLASH_KEY, $statusCode = self::DEFAULT_STATUS_CODE)
     {
         return new static($route, array(), array($type => array($message)), $statusCode);
     }

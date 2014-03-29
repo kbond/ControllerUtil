@@ -7,6 +7,8 @@ namespace Zenstruck\ControllerUtil;
  */
 interface HasFlashes
 {
+    const DEFAULT_FLASH_KEY = 'info';
+
     /**
      * Returns the array of flashes.
      *
