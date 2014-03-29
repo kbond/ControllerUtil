@@ -49,7 +49,7 @@ Arguments:
 
 ### Redirect
 
-To redirect your response to another route, return the `Zenstruck\ControllerUtil\Redirect` object.
+To redirect to another route, return the `Zenstruck\ControllerUtil\Redirect` object.
 
 ```php
 use Zenstruck\ControllerUtil\Redirect;
@@ -57,6 +57,9 @@ use Zenstruck\ControllerUtil\Redirect;
 // ...
 public function redirectAction()
 {
+    return new Redirect('my_route');
+
+    // with parameters
     return new Redirect('my_route', array('foo' => 'bar'));
 }
 // ...
@@ -70,7 +73,7 @@ Arguments:
 
 ### FlashRedirect
 
-To redirect your response to another route and add a flash message, return the
+To redirect to another route and add a flash message, return the
 `Zenstruck\ControllerUtil\FlashRedirect` object.
 
 ```php
@@ -100,7 +103,7 @@ can be cumbersome, there are factory methods.
 
 Factory Methods:
 
-* `create`:
+* `FlashRedirect::create`:
 
     Arguments:
 
@@ -110,7 +113,7 @@ Factory Methods:
     * `$type`: The flash type (default: `info`).
     * `$statusCode`: the status code for the response (default: `302`).
 
-* `createSimple` (for redirects with no route parameters):
+* `FlashRedirect::createSimple` (for redirects with no route parameters):
 
     Arguments:
 
@@ -122,6 +125,9 @@ Factory Methods:
 ### View
 
 To create a view for your response, return the `Zenstruck\ControllerUtil\View` object.
+
+```php
+use Zenstruck\ControllerUtil\View;
 
 // ...
 public function viewAction()
@@ -152,7 +158,7 @@ Arguments:
 
 Factory Methods:
 
-* `createCached`:
+* `View::createCached`:
 
     Arguments:
 
@@ -172,6 +178,9 @@ non-html. Otherwise an error will result.
 ### Template
 
 If your views always have a template, you can use the `Zenstruck\ControllerUtil\Template` object for convenience.
+
+```php
+use Zenstruck\ControllerUtil\Template;
 
 // ...
 public function viewAction()
@@ -193,7 +202,7 @@ Arguments:
 
 Factory Methods:
 
-* `createCached`:
+* `Template::createCached`:
 
     Arguments:
 
