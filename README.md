@@ -124,7 +124,12 @@ Factory Methods:
 
 ### View
 
-To create a view for your response, return the `Zenstruck\ControllerUtil\View` object.
+To create a view for your response, return the `Zenstruck\ControllerUtil\View` object. This library has
+3 view listeners:
+
+* `TemplatingViewListener`: for rendering views with the Symfony2 templating component.
+* `TwigViewListener`: for rendering views with Twig.
+* `SerializerViewListener`: for rendering non-html views with [jms/serializer](https://github.com/schmittjoh/serializer).
 
 ```php
 use Zenstruck\ControllerUtil\View;
@@ -172,8 +177,8 @@ Factory Methods:
 that exists.
 * If no template is provided, you need to have the `SerializerViewListener` enabled and the request must be
 non-html. Otherwise an error will result.
-* If `$data` is not an array, a template is provided and the request is html, the view listener will convert
-`$data` to `array('data' => $data)` before passing it to your template.
+* If `$data` is not an array, a template is provided, the view listener will convert `$data` to
+`array('data' => $data)` before passing it to your template.
 
 ### Template
 
@@ -210,3 +215,57 @@ Factory Methods:
     * `$sharedMaxAge`: the shared max age in seconds (*required*).
     * `$parameters`: the parameters to pass to the view (default: `array()`).
     * `$statusCode`: the status code for the response (default: `200`).
+
+## Manual installation
+
+It is recommended you use either the [Symfony2 Bundle](https://github.com/kbond/ZenstruckControllerUtilBundle)
+or the [Silex Service Provider](https://github.com/kbond/ControllerUtilServiceProvider) for including these
+utilities in your project.
+
+If you are doing something custom using the Symfony2 Event Dispatcher, you can register the listeners manually:
+
+```php
+// add the HasFlashesListener
+$eventDispatcher->addListener(
+    KernelEvents::VIEW,
+    array(new HasFlashesListener($flashBag), 'onKernelView'),
+    10 // before other events
+);
+
+// add the RedirectListener
+$eventDispatcher->addListener(
+    KernelEvents::VIEW,
+    array(new RedirectListener($urlGenerator), 'onKernelView')
+);
+
+// add the ForwardListener
+$eventDispatcher->addListener(
+    KernelEvents::VIEW,
+    array(new ForwardListener(), 'onKernelView')
+);
+
+// add the TwigViewListener
+$eventDispatcher->addListener(
+    KernelEvents::VIEW,
+    array(new TwigViewListener($twigEnvironment), 'onKernelView')
+);
+
+// add the TemplatingViewListener
+$eventDispatcher->addListener(
+    KernelEvents::VIEW,
+    array(new TemplatingViewListener($templating), 'onKernelView')
+);
+
+// add the SerializerViewListener
+$eventDispatcher->addListener(
+    KernelEvents::VIEW,
+    array(new SerializerViewListener($serializer), 'onKernelView'),
+    5 // before other events
+);
+```
+
+**NOTES**:
+
+* Notice the priority on the `HasFlashesLisetner` and `SerializerViewListener`. These need to be triggered before
+the other listeners.
+* You should only use either the `TemplatingViewListener` or `TwigViewListener` - not both.
