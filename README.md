@@ -266,6 +266,6 @@ $eventDispatcher->addListener(
 
 **NOTES**:
 
-* Notice the priority on the `HasFlashesLisetner` and `SerializerViewListener`. These need to be triggered before
+* Notice the priority on the `HasFlashesListener` and `SerializerViewListener`. These need to be triggered before
 the other listeners.
 * You should only use either the `TemplatingViewListener` or `TwigViewListener` - not both.
