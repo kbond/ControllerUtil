@@ -21,11 +21,11 @@ abstract class ViewListener
         }
 
         $response = Response::create(
-                $this->getContent($result, $format),
-                $result->getStatusCode(),
-                $result->getHeaders()
-            )
-            ->setCache($result->getCache())
+            $this->getContent($result, $format),
+            $result->getStatusCode(),
+            $result->getHeaders()
+        )
+        ->setCache($result->getCache())
         ;
 
         $event->setResponse($response);

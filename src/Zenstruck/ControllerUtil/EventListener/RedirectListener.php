@@ -28,9 +28,8 @@ class RedirectListener
         }
 
         $event->setResponse(new RedirectResponse(
-                $this->urlGenerator->generate($result->getRoute(), $result->getParameters()),
-                $result->getStatusCode()
-            )
-        );
+            $this->urlGenerator->generate($result->getRoute(), $result->getParameters()),
+            $result->getStatusCode()
+        ));
     }
 }

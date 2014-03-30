@@ -17,7 +17,7 @@ class ForwardListenerTest extends BaseListenerTest
     public function testCreatesForwardResponse()
     {
         $listener = new ForwardListener();
-        $kernel = $this->getMock('Symfony\Component\HttpKernel\HttpKernel', array(), array(), '',false);
+        $kernel = $this->getMock('Symfony\Component\HttpKernel\HttpKernel', array(), array(), '', false);
         $kernel
             ->expects($this->once())
             ->method('handle')
