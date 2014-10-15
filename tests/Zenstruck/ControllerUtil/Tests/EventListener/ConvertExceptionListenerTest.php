@@ -34,7 +34,7 @@ class ConvertExceptionListenerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Symfony\Component\HttpKernel\Exception\HttpException', $exception);
         $this->assertSame(500, $exception->getStatusCode());
-        $this->assertSame('', $exception->getMessage());
+        $this->assertEquals('', $exception->getMessage());
         $this->assertInstanceOf('RuntimeException', $exception->getPrevious());
         $this->assertSame('foo', $exception->getPrevious()->getMessage());
 
@@ -44,7 +44,7 @@ class ConvertExceptionListenerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Symfony\Component\HttpKernel\Exception\HttpException', $exception);
         $this->assertSame(404, $exception->getStatusCode());
-        $this->assertSame('', $exception->getMessage());
+        $this->assertEquals('', $exception->getMessage());
 
         $event = $this->createEvent(new \LogicException('bar'));
         $listener->onKernelException($event);
