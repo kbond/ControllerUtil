@@ -23,5 +23,8 @@
     },
     "autoload": {
         "psr-0": { "Zenstruck": "src/" }
+    },
+    "autoload-dev": {
+        "psr-0": { "Zenstruck": "tests/" }
     }
 }
