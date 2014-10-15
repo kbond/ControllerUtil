@@ -49,11 +49,10 @@ class ParamConverterListenerTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider controllerProvider
      */
-    public function testOnKernelControllerWithoutSupport()
+    public function testOnKernelControllerWithoutSupport($controller)
     {
         $fixture = new ParamConverterListenerFixture();
         $request = new Request();
-        $controller = function($id, ParamConverterListenerFixture $fixture) { };
         $event = $this->createEvent($controller, $request);
 
         $converter = $this->getMock('Zenstruck\ControllerUtil\ParamConverter\ParamConverter');
@@ -74,7 +73,7 @@ class ParamConverterListenerTest extends \PHPUnit_Framework_TestCase
     public function controllerProvider()
     {
         return array(
-            array(function($id, ParamConverterListenerFixture $fixture) { }),
+            array(function ($id, ParamConverterListenerFixture $fixture) { }),
             array(array('Zenstruck\ControllerUtil\Tests\EventListener\ParamConverterListenerController', 'fooAction'))
         );
     }
