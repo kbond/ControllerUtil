@@ -32,6 +32,14 @@ class ParamConverterListener
     }
 
     /**
+     * @param ParamConverter $paramConverter
+     */
+    public function addParamConverter(ParamConverter $paramConverter)
+    {
+        $this->paramConverters[] = $paramConverter;
+    }
+
+    /**
      * @param FilterControllerEvent $event
      */
     public function onKernelController(FilterControllerEvent $event)
