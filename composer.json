@@ -22,9 +22,9 @@
         "jms/serializer": "For using the SerializerViewListener"
     },
     "autoload": {
-        "psr-0": { "Zenstruck": "src/" }
+        "psr-4": { "Zenstruck\\ControllerUtil\\": "src/" }
     },
     "autoload-dev": {
-        "psr-0": { "Zenstruck": "tests/" }
+        "psr-4": { "Zenstruck\\ControllerUtil\\Tests\\": "tests/" }
     }
 }
