@@ -13,7 +13,10 @@ env:
   - SYMFONY_VERSION=2.5.*
 
 before_install:
-  - composer require --prefer-source symfony/symfony:${SYMFONY_VERSION}
+  - composer require --no-update symfony/http-foundation:${SYMFONY_VERSION}
+  - composer require --no-update symfony/debug:${SYMFONY_VERSION}
+  - composer require --no-update symfony/event-dispatcher:${SYMFONY_VERSION}
+  - composer require --prefer-source symfony/http-kernel:${SYMFONY_VERSION}
 
 script:
   - phpunit --coverage-clover=coverage.clover
