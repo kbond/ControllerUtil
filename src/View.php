@@ -40,8 +40,7 @@ class View
         $template = null,
         array $cache = array(),
         array $headers = array()
-    )
-    {
+    ) {
         $this->data = $data;
         $this->statusCode = $statusCode;
         $this->template = $template;

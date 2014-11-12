@@ -2,10 +2,10 @@
 
 namespace Zenstruck\ControllerUtil\EventListener;
 
-use Zenstruck\ControllerUtil\Redirect;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Zenstruck\ControllerUtil\Redirect;
 
 /**
  * @author Kevin Bond <kevinbond@gmail.com>

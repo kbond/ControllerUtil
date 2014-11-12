@@ -2,9 +2,9 @@
 
 namespace Zenstruck\ControllerUtil\EventListener;
 
-use Zenstruck\ControllerUtil\Forward;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Zenstruck\ControllerUtil\Forward;
 
 /**
  * @author Kevin Bond <kevinbond@gmail.com>

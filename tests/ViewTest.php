@@ -45,7 +45,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
             array(null, array()),
             array('foo', array('data' => 'foo')),
             array(array('foo' => 'bar'), array('foo' => 'bar')),
-            array($object, array('data' => $object))
+            array($object, array('data' => $object)),
         );
     }
 }

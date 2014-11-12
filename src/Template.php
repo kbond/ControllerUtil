@@ -35,8 +35,7 @@ class Template extends View
         $statusCode = self::DEFAULT_STATUS_CODE,
         array $cache = array(),
         array $headers = array()
-    )
-    {
+    ) {
         parent::__construct($parameters, $statusCode, $template, $cache, $headers);
     }
 }
