@@ -73,6 +73,7 @@ class ParamConverterListenerTest extends \PHPUnit_Framework_TestCase
     public function controllerProvider()
     {
         return array(
+            array('Zenstruck\ControllerUtil\Tests\EventListener\function_controller'),
             array(function ($id, ParamConverterListenerFixture $fixture) { }),
             array(array('Zenstruck\ControllerUtil\Tests\EventListener\ParamConverterListenerController', 'fooAction')),
             array(new ParamConverterListenerInvokableController()),
@@ -107,3 +108,5 @@ class ParamConverterListenerInvokableController
 class ParamConverterListenerFixture
 {
 }
+
+function function_controller ($id, ParamConverterListenerFixture $fixture) {}

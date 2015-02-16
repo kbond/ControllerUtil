@@ -49,11 +49,12 @@ class ParamConverterListener
 
         if (is_array($controller)) {
             $reflection = new \ReflectionMethod($controller[0], $controller[1]);
-        } elseif ($controller instanceof \Closure) {
+        } elseif (is_string($controller)) {
             $reflection = new \ReflectionFunction($controller);
         } else {
             // use __invoke
-            $reflection = new \ReflectionMethod(get_class($controller), '__invoke');
+            $objReflector = new \ReflectionObject($controller);
+            $reflection = $objReflector->getMethod('__invoke');
         }
 
         foreach ($reflection->getParameters() as $param) {
