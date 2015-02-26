@@ -7,6 +7,8 @@ use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Zenstruck\ControllerUtil\EventListener\ConvertExceptionListener;
+use Zenstruck\ControllerUtil\Exception\HasSafeMessage;
+use Zenstruck\ControllerUtil\Exception\SafeMessage;
 
 /**
  * @author Kevin Bond <kevinbond@gmail.com>
@@ -62,6 +64,32 @@ class ConvertExceptionListenerTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('foo', $exception->getMessage());
     }
 
+    public function testOnKernelExceptionWithSafeMessages()
+    {
+        $listener = new ConvertExceptionListener(array(
+            'Zenstruck\ControllerUtil\Tests\EventListener\SafeMessageException' => 500,
+            'Zenstruck\ControllerUtil\Tests\EventListener\HasSafeMessageException' => 404,
+        ));
+
+        $exception = new SafeMessageException('safe message');
+        $event = $this->createEvent($exception);
+        $listener->onKernelException($event);
+        $exception = $event->getException();
+
+        $this->assertInstanceOf('Symfony\Component\HttpKernel\Exception\HttpException', $exception);
+        $this->assertSame(500, $exception->getStatusCode());
+        $this->assertSame('safe message', $exception->getMessage());
+
+        $exception = new HasSafeMessageException('unsafe message');
+        $event = $this->createEvent($exception);
+        $listener->onKernelException($event);
+        $exception = $event->getException();
+
+        $this->assertInstanceOf('Symfony\Component\HttpKernel\Exception\HttpException', $exception);
+        $this->assertSame(404, $exception->getStatusCode());
+        $this->assertSame('this is a safe message', $exception->getMessage());
+    }
+
     private function createEvent(\Exception $exception)
     {
         return new GetResponseForExceptionEvent(
@@ -70,5 +98,17 @@ class ConvertExceptionListenerTest extends \PHPUnit_Framework_TestCase
             HttpKernelInterface::MASTER_REQUEST,
             $exception
         );
+    }
+}
+
+class SafeMessageException extends \Exception implements SafeMessage
+{
+}
+
+class HasSafeMessageException extends \Exception implements HasSafeMessage
+{
+    public function getSafeMessage()
+    {
+        return 'this is a safe message';
     }
 }

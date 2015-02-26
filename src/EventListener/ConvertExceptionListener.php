@@ -5,6 +5,8 @@ namespace Zenstruck\ControllerUtil\EventListener;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Zenstruck\ControllerUtil\Exception\HasSafeMessage;
+use Zenstruck\ControllerUtil\Exception\SafeMessage;
 
 /**
  * Converts Exceptions into Symfony HttpKernel Exceptions.
@@ -43,7 +45,25 @@ class ConvertExceptionListener
             return;
         }
 
-        $event->setException(new HttpException($statusCode, null, $exception));
+        $event->setException(new HttpException($statusCode, $this->getMessage($exception), $exception));
+    }
+
+    /**
+     * @param \Exception $exception
+     *
+     * @return string|null
+     */
+    private function getMessage(\Exception $exception)
+    {
+        if ($exception instanceof HasSafeMessage) {
+            return $exception->getSafeMessage();
+        }
+
+        if ($exception instanceof SafeMessage) {
+            return $exception->getMessage();
+        }
+
+        return null;
     }
 
     /**
