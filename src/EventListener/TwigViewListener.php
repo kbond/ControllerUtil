@@ -19,10 +19,18 @@ class TwigViewListener extends ViewListener
     /**
      * {@inheritdoc}
      */
-    public function getContent(View $view, $format)
+    protected function getContent(View $view, $format)
     {
         $template = $this->twig->resolveTemplate($view->getTemplate());
 
         return $template->render($view->getDataAsArray());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function supports(View $view, $format)
+    {
+        return null !== $view->getTemplate();
     }
 }

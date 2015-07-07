@@ -20,7 +20,7 @@ class SerializerViewListener extends ViewListener
     /**
      * {@inheritdoc}
      */
-    protected function supportsFormat($format)
+    protected function supports(View $view, $format)
     {
         return 'html' !== $format;
     }

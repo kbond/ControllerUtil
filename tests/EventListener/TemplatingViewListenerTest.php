@@ -4,6 +4,7 @@ namespace Zenstruck\ControllerUtil\Tests\EventListener;
 
 use Zenstruck\ControllerUtil\EventListener\TemplatingViewListener;
 use Zenstruck\ControllerUtil\Template;
+use Zenstruck\ControllerUtil\View;
 
 /**
  * @author Kevin Bond <kevinbond@gmail.com>
@@ -27,6 +28,17 @@ class TemplatingViewListenerTest extends ViewListenerTest
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $event->getResponse());
         $this->assertSame('this is the rendered foobar template', $event->getResponse()->getContent());
+    }
+
+    public function testSkipsWhenNoTemplate()
+    {
+        $engine = $this->createEngine();
+        $listener = new TemplatingViewListener($engine);
+        $event = $this->createEvent(new View('foo'));
+        $this->assertNull($event->getResponse());
+
+        $listener->onKernelView($event);
+        $this->assertNull($event->getResponse());
     }
 
     public function testCreatesResponseWithTemplateArray()

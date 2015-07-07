@@ -16,7 +16,11 @@ abstract class ViewListener
         $result = $event->getControllerResult();
         $format = $event->getRequest()->attributes->get('_format', 'html');
 
-        if (!$result instanceof View || !$this->supportsFormat($format)) {
+        if (!$result instanceof View) {
+            return;
+        }
+
+        if (!$this->supports($result, $format)) {
             return;
         }
 
@@ -32,14 +36,12 @@ abstract class ViewListener
     }
 
     /**
+     * @param View   $view
      * @param string $format
      *
      * @return bool
      */
-    protected function supportsFormat($format)
-    {
-        return true;
-    }
+    abstract protected function supports(View $view, $format);
 
     /**
      * @param View   $view

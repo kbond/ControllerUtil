@@ -4,6 +4,7 @@ namespace Zenstruck\ControllerUtil\Tests\EventListener;
 
 use Zenstruck\ControllerUtil\EventListener\TwigViewListener;
 use Zenstruck\ControllerUtil\Template;
+use Zenstruck\ControllerUtil\View;
 
 /**
  * @author Kevin Bond <kevinbond@gmail.com>
@@ -34,6 +35,17 @@ class TwigViewListenerTest extends ViewListenerTest
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $event->getResponse());
         $this->assertSame('this is the rendered foobar template', $event->getResponse()->getContent());
+    }
+
+    public function testSkipsWhenNoTemplate()
+    {
+        $twig = $this->getMock('Twig_Environment', array('resolveTemplate'));
+        $listener = new TwigViewListener($twig);
+        $event = $this->createEvent(new View('foo'));
+        $this->assertNull($event->getResponse());
+
+        $listener->onKernelView($event);
+        $this->assertNull($event->getResponse());
     }
 
     protected function createListener()

@@ -35,4 +35,12 @@ class TemplatingViewListener extends ViewListener
 
         return $this->templating->render($template, $view->getDataAsArray());
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function supports(View $view, $format)
+    {
+        return null !== $view->getTemplate();
+    }
 }
