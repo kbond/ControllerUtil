@@ -13,7 +13,7 @@ class NoContentViewListenerTest extends BaseListenerTest
     public function test_empty_view_result_sets_no_content_response()
     {
         $listener = new NoContentViewListener();
-        $event = $this->createEvent(new View(null));
+        $event = $this->createEvent(new View(null, 200, null, array(), array('Location' => '/foo')));
         $this->assertNull($event->getResponse());
 
         $listener->onKernelView($event);
@@ -21,6 +21,7 @@ class NoContentViewListenerTest extends BaseListenerTest
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertSame('', $response->getContent());
         $this->assertSame(204, $response->getStatusCode());
+        $this->assertSame('/foo', $response->headers->get('Location'));
     }
 
     /**

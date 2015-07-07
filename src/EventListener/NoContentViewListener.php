@@ -36,15 +36,17 @@ class NoContentViewListener
         }
 
         if (null === $result->getData() && null === $result->getTemplate()) {
-            $event->setResponse($this->createResponse());
+            $event->setResponse($this->createResponse($result->getHeaders()));
         }
     }
 
     /**
+     * @param array $headers
+     *
      * @return Response
      */
-    private function createResponse()
+    private function createResponse(array $headers = array())
     {
-        return new Response('', 204);
+        return new Response('', 204, $headers);
     }
 }
