@@ -179,6 +179,24 @@ non-html. Otherwise an error will result.
 * If `$data` is not an array, a template is provided, the view listener will convert `$data` to
 `array('data' => $data)` before passing it to your template.
 
+#### No Content View
+
+This library has a `NoContentViewListener` which allows your controllers to return an empty View or (if enabled)
+simply null. The view listener will set a no content response (204).
+
+```php
+use Zenstruck\ControllerUtil\View;
+
+// ...
+public function viewAction()
+{
+    return new View(null);
+
+    return null; // if enabled
+}
+// ...
+```
+
 ### Template
 
 If your views always have a template, you can use the `Zenstruck\ControllerUtil\Template` object for convenience.
@@ -255,6 +273,13 @@ $eventDispatcher->addListener(
     array(new TemplatingViewListener($templating), 'onKernelView')
 );
 
+// add the NoContentViewListener
+$eventDispatcher->addListener(
+    KernelEvents::VIEW,
+    array(new NoContentViewListener(true /* false to force an empty view and not allow null */), 'onKernelView'),
+    7 // before other events
+);
+
 // add the SerializerViewListener
 $eventDispatcher->addListener(
     KernelEvents::VIEW,
@@ -265,6 +290,6 @@ $eventDispatcher->addListener(
 
 **NOTES**:
 
-* Notice the priority on the `HasFlashesListener` and `SerializerViewListener`. These need to be triggered before
-the other listeners.
+* Notice the priority on the `HasFlashesListener`, `NoContentViewListener` and `SerializerViewListener`. These need
+to be triggered before the other listeners.
 * You should only use either the `TemplatingViewListener` or `TwigViewListener` - not both.
