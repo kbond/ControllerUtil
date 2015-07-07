@@ -28,14 +28,14 @@ class View
     }
 
     /**
-     * @param mixed        $data
+     * @param mixed|null   $data
      * @param int          $statusCode
      * @param string|array $template
      * @param array        $cache
      * @param array        $headers
      */
     public function __construct(
-        $data,
+        $data = null,
         $statusCode = self::DEFAULT_STATUS_CODE,
         $template = null,
         array $cache = array(),
