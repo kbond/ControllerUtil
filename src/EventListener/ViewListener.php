@@ -14,7 +14,7 @@ abstract class ViewListener
     public function onKernelView(GetResponseForControllerResultEvent $event)
     {
         $result = $event->getControllerResult();
-        $format = $event->getRequest()->attributes->get('_format', 'html');
+        $format = $event->getRequest()->getRequestFormat();
 
         if (!$result instanceof View) {
             return;
