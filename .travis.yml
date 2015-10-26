@@ -5,22 +5,36 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - 7.0
   - hhvm
 
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
 env:
-  - SYMFONY_VERSION=2.3.*
-  - SYMFONY_VERSION=2.4.*
-  - SYMFONY_VERSION=2.5.*
-  - SYMFONY_VERSION=2.6.*
+  - SYMFONY_VERSION=2.7.*
+
+matrix:
+  include:
+    - php: 5.6
+      env: SYMFONY_VERSION=2.3.*
+    - php: 5.6
+      env: SYMFONY_VERSION=2.8.*@dev
+    - php: 5.6
+      env: SYMFONY_VERSION=3.0.*@dev
+    - php: 5.3
+      env: COMPOSER_FLAGS="--prefer-lowest"
 
 before_install:
-  - composer require --no-update symfony/http-foundation:${SYMFONY_VERSION}
-  - composer require --no-update symfony/debug:${SYMFONY_VERSION}
-  - composer require --no-update symfony/event-dispatcher:${SYMFONY_VERSION}
-  - composer require --prefer-source symfony/http-kernel:${SYMFONY_VERSION}
+  - composer self-update
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
 
-script:
-  - phpunit --coverage-clover=coverage.clover
+install: composer update --prefer-source $COMPOSER_FLAGS
+
+script: phpunit --coverage-clover=coverage.clover
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar

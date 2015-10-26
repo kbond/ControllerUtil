@@ -4,6 +4,7 @@
 [![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/kbond/ControllerUtil.svg?style=flat-square)](https://scrutinizer-ci.com/g/kbond/ControllerUtil/)
 [![Code Coverage](http://img.shields.io/scrutinizer/coverage/g/kbond/ControllerUtil.svg?style=flat-square)](https://scrutinizer-ci.com/g/kbond/ControllerUtil/)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/480f9e60-4ae0-46ea-b691-b66e51aa09f4.svg?style=flat-square)](https://insight.sensiolabs.com/projects/480f9e60-4ae0-46ea-b691-b66e51aa09f4)
+[![StyleCI](https://styleci.io/repos/17921235/shield)](https://styleci.io/repos/17921235)
 [![Latest Stable Version](http://img.shields.io/packagist/v/zenstruck/controller-util.svg?style=flat-square)](https://packagist.org/packages/zenstruck/controller-util)
 [![License](http://img.shields.io/packagist/l/zenstruck/controller-util.svg?style=flat-square)](https://packagist.org/packages/zenstruck/controller-util)
 

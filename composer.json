@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/http-kernel": "~2.3"
+        "symfony/http-kernel": "~2.3|~3.0"
     },
     "suggest": {
         "symfony/templating": "For using the TemplatingViewListener",
