@@ -30,7 +30,7 @@ class FlashBagParamConverter implements ParamConverter
      */
     public function supports($class)
     {
-        return is_subclass_of($class, "Symfony\\Component\\HttpFoundation\\Session\\Flash\\FlashBagInterface") ||
-            $class === "Symfony\\Component\\HttpFoundation\\Session\\Flash\\FlashBagInterface";
+        return is_subclass_of($class, 'Symfony\\Component\\HttpFoundation\\Session\\Flash\\FlashBagInterface') ||
+            $class === 'Symfony\\Component\\HttpFoundation\\Session\\Flash\\FlashBagInterface';
     }
 }

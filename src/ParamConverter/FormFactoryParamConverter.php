@@ -30,7 +30,7 @@ class FormFactoryParamConverter implements ParamConverter
      */
     public function supports($class)
     {
-        return is_subclass_of($class, "Symfony\\Component\\Form\\FormFactoryInterface") ||
-            $class === "Symfony\\Component\\Form\\FormFactoryInterface";
+        return is_subclass_of($class, 'Symfony\\Component\\Form\\FormFactoryInterface') ||
+            $class === 'Symfony\\Component\\Form\\FormFactoryInterface';
     }
 }

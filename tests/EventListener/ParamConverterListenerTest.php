@@ -109,4 +109,6 @@ class ParamConverterListenerFixture
 {
 }
 
-function function_controller ($id, ParamConverterListenerFixture $fixture) {}
+function function_controller($id, ParamConverterListenerFixture $fixture)
+{
+}

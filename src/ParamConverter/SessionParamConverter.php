@@ -22,7 +22,7 @@ class SessionParamConverter implements ParamConverter
      */
     public function supports($class)
     {
-        return is_subclass_of($class, "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface") ||
-            $class === "Symfony\\Component\\HttpFoundation\\Session\\SessionInterface";
+        return is_subclass_of($class, 'Symfony\\Component\\HttpFoundation\\Session\\SessionInterface') ||
+            $class === 'Symfony\\Component\\HttpFoundation\\Session\\SessionInterface';
     }
 }

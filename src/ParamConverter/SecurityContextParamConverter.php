@@ -30,7 +30,7 @@ class SecurityContextParamConverter implements ParamConverter
      */
     public function supports($class)
     {
-        return is_subclass_of($class, "Symfony\\Component\\Security\\Core\\SecurityContextInterface") ||
-            $class === "Symfony\\Component\\Security\\Core\\SecurityContextInterface";
+        return is_subclass_of($class, 'Symfony\\Component\\Security\\Core\\SecurityContextInterface') ||
+            $class === 'Symfony\\Component\\Security\\Core\\SecurityContextInterface';
     }
 }
