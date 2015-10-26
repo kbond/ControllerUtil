@@ -73,6 +73,6 @@ class TemplatingViewListenerTest extends ViewListenerTest
 
     private function createEngine()
     {
-        return $this->getMock('Symfony\Component\Templating\EngineInterface', array('render', 'exists'));
+        return $this->getMock('Symfony\Component\Templating\EngineInterface');
     }
 }

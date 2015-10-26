@@ -15,7 +15,7 @@ class TwigViewListenerTest extends ViewListenerTest
     {
         $object = new Template('foobar', array('foo' => 'bar'));
 
-        $template = $this->getMock('Twig_Template', array('render'));
+        $template = $this->getMock('Twig_Template', array('render', 'doDisplay', 'getTemplateName'), array(), '', false);
         $template->expects($this->once())
             ->method('render')
             ->with($object->getDataAsArray())

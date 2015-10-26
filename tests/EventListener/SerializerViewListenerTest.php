@@ -45,6 +45,6 @@ class SerializerViewListenerTest extends ViewListenerTest
 
     private function createSerializer()
     {
-        return $this->getMock('JMS\Serializer\SerializerInterface', array('serialize'));
+        return $this->getMock('JMS\Serializer\SerializerInterface');
     }
 }
