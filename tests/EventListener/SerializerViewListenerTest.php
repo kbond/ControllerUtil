@@ -10,11 +10,13 @@ use Zenstruck\ControllerUtil\View;
  */
 class SerializerViewListenerTest extends ViewListenerTest
 {
-    public function testCreatesResponse()
+    /**
+     * @dataProvider serializerProvider
+     */
+    public function testCreatesResponse($serializer)
     {
         $object = new View('foo');
 
-        $serializer = $this->createSerializer();
         $serializer->expects($this->once())
             ->method('serialize')
             ->with($object->getData())
@@ -29,22 +31,36 @@ class SerializerViewListenerTest extends ViewListenerTest
         $this->assertSame('"foo"', $event->getResponse()->getContent());
     }
 
-    public function testSkipFormat()
+    /**
+     * @dataProvider serializerProvider
+     */
+    public function testSkipFormat($serializer)
     {
-        $listener = $this->createListener();
+        $listener = new SerializerViewListener($serializer);
         $event = $this->createEvent(new View('foo'));
         $listener->onKernelView($event);
 
         $this->assertNull($event->getResponse());
     }
 
-    protected function createListener()
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testInvalidSerializer()
     {
-        return new SerializerViewListener($this->createSerializer());
+        $listener = new SerializerViewListener('foo');
     }
 
-    private function createSerializer()
+    public function serializerProvider()
     {
-        return $this->getMock('JMS\Serializer\SerializerInterface');
+        return array(
+            array($this->getMock('JMS\Serializer\SerializerInterface')),
+            array($this->getMock('Symfony\Component\Serializer\SerializerInterface')),
+        );
+    }
+
+    protected function createListener()
+    {
+        return new SerializerViewListener($this->getMock('JMS\Serializer\SerializerInterface'));
     }
 }
