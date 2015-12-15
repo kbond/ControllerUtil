@@ -19,16 +19,10 @@ env:
 
 matrix:
   include:
-    - php: 5.6
-      env: SYMFONY_VERSION=2.3.*
-    - php: 5.6
-      env: SYMFONY_VERSION=2.8.*@dev
     - php: 5.3
       env: COMPOSER_FLAGS="--prefer-lowest"
 
-before_install:
-  - composer self-update
-  - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
+before_install: composer self-update
 
 install: composer update --prefer-source $COMPOSER_FLAGS
 
