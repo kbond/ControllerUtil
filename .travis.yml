@@ -14,9 +14,6 @@ cache:
   directories:
     - $HOME/.composer/cache/files
 
-env:
-  - SYMFONY_VERSION=2.7.*
-
 matrix:
   include:
     - php: 5.3
