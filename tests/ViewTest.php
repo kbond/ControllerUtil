@@ -37,6 +37,22 @@ class ViewTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expected, $view->getDataAsArray());
     }
 
+    public function testArrayAccess()
+    {
+        $view = new View('foo');
+        $view['bar'] = 'baz';
+
+        $this->assertSame(array('data' => 'foo', 'bar' => 'baz'), $view->getData());
+        $this->assertSame('foo', $view['data']);
+        $this->assertSame(array('data' => 'foo', 'bar' => 'baz'), $view->getDataAsArray());
+        $this->assertTrue(isset($view['data']));
+
+        $view['data'] = 'buz';
+        unset($view['bar']);
+
+        $this->assertSame(array('data' => 'buz'), $view->getData());
+    }
+
     public function dataAsArrayProvider()
     {
         $object = new \stdClass();

@@ -5,7 +5,7 @@ namespace Zenstruck\ControllerUtil;
 /**
  * @author Kevin Bond <kevinbond@gmail.com>
  */
-class View
+class View implements \ArrayAccess
 {
     const DEFAULT_STATUS_CODE = 200;
 
@@ -112,5 +112,54 @@ class View
     public function getHeaders()
     {
         return $this->headers;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function offsetExists($offset)
+    {
+        $this->ensureDataIsArray();
+
+        return isset($this->data[$offset]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function offsetGet($offset)
+    {
+        $this->ensureDataIsArray();
+
+        return $this->data[$offset];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function offsetSet($offset, $value)
+    {
+        $this->ensureDataIsArray();
+
+        $this->data[$offset] = $value;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function offsetUnset($offset)
+    {
+        $this->ensureDataIsArray();
+
+        unset($this->data[$offset]);
+    }
+
+    private function ensureDataIsArray()
+    {
+        if (is_array($this->data)) {
+            return;
+        }
+
+        $this->data = $this->getDataAsArray();
     }
 }
